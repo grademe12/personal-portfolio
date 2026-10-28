@@ -5,7 +5,7 @@ category: auto
 team: 개인 프로젝트
 period: '2026.10'
 tools: [Astro, Cloudflare Pages, GitHub Actions]
-repo: https://github.com/grademe12/portfolio
+repo: https://github.com/grademe12/personal-portfolio
 order: 5
 # 배포가 끝나면 false로 바꿔 공개합니다.
 draft: true
