@@ -13,9 +13,10 @@ const { projects } = Astro.props;
 <div class="tiles">
   {
     projects.map((project) => {
-      const { title, summary, category, team, period, tools, size, roles } = project.data;
+      const { title, summary, category, team, period, tools, size, roles, cover } = project.data;
       return (
         <a class={`tile ${size}`} href={`/projects/${project.id}/`}>
+          {cover && <img class="cover" src={cover} alt="" loading="lazy" />}
           <div class="kind">
             <Cable category={category} />
             {CATEGORIES[category]}, {team}
@@ -82,6 +83,14 @@ const { projects } = Astro.props;
   }
   .tile.wide p {
     max-width: 52rem;
+  }
+  .cover {
+    display: block;
+    width: calc(100% + 48px);
+    max-width: none;
+    margin: -24px -24px 20px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
   .kind {
     display: flex;

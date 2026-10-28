@@ -6,6 +6,7 @@ team: 42서울 2인
 period: '2024.06 – 2024.10'
 tools: [C, MiniLibX, 벡터 수학]
 repo: https://github.com/grademe12/miniRT
+cover: /images/minirt/temple.webp
 order: 7
 roles:
   - title: '렌더링'
@@ -24,6 +25,19 @@ roles:
 `.rt` 장면 파일에 적힌 카메라, 조명, 물체를 읽어서 한 장의 이미지로 그리는 42서울 과제입니다. 외부 그래픽 라이브러리 없이, 창을 띄우고 점을 찍는 MiniLibX만으로 광선 추적을 직접 구현해야 했습니다.
 
 두 명이 나눠서 했고, 팀원이 장면 파일 파싱을, 제가 그 데이터로 실제 이미지를 만드는 렌더링을 맡았습니다.
+
+## 결과
+
+<div class="shots">
+  <figure>
+    <img src="/images/minirt/temple.webp" alt="원기둥과 구를 조합해 만든 신전 장면. 기둥들이 바닥에 그림자를 드리우고, 가운데에 작은 구가 떠 있다." width="1200" height="895" loading="lazy" />
+    <figcaption>원기둥과 구를 조합한 장면. 원기둥 윗면과 아랫면, 바닥에 드리운 그림자까지 직접 계산했습니다.</figcaption>
+  </figure>
+  <figure>
+    <img src="/images/minirt/sphere.webp" alt="점광원 하나에 비친 흰 구와 바닥에 길게 드리운 그림자." width="1200" height="897" loading="lazy" />
+    <figcaption>점광원 하나와 구. 빛을 받는 면의 밝기 변화와 바닥 그림자.</figcaption>
+  </figure>
+</div>
 
 ## 렌더링 흐름
 

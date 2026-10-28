@@ -15,6 +15,8 @@ const projects = defineCollection({
     repo: z.string().optional(),
     // 홈 화면 타일 크기: lead는 왼쪽 큰 칸, wide는 한 줄 전체
     size: z.enum(['lead', 'wide', 'normal']).default('normal'),
+    // 홈 화면 타일 위쪽에 넣을 대표 이미지 (public/ 기준 경로)
+    cover: z.string().optional(),
     // 상세 페이지 위쪽에 넣을 구성도 (src/components의 *Diagram.astro)
     diagram: z.enum(['homelab', 'pearl']).optional(),
     // 팀 프로젝트에서 본인이 한 일. 타일과 상세 페이지에 표시됩니다.
