@@ -4,11 +4,10 @@ summary: 워드프레스 블로그를 설정 실수로 잃은 뒤, 글과 설정
 category: auto
 team: 개인 프로젝트
 period: '2026.10'
-tools: [Astro, Cloudflare Pages, GitHub Actions]
+tools: [Astro, Cloudflare Workers, GitHub Actions]
 repo: https://github.com/grademe12/personal-portfolio
+size: wide
 order: 5
-# 배포가 끝나면 false로 바꿔 공개합니다.
-draft: true
 ---
 
 ## 배경
@@ -18,4 +17,4 @@ draft: true
 ## 바꾼 것
 
 - 글과 설정을 DB가 아니라 Git 저장소의 마크다운 파일로 관리합니다. 변경 이력이 남고 어떤 상태로든 되돌릴 수 있습니다.
-- 서버를 직접 운영하지 않습니다. push하면 Cloudflare Pages가 빌드하고 배포합니다.
+- 서버를 직접 운영하지 않습니다. push하면 Cloudflare가 빌드해서 정적 자산으로 배포하고, `woosupar.dev` 도메인으로 서비스합니다.
