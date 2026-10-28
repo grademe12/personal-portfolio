@@ -7,7 +7,7 @@ import Drawing from './Drawing.astro';
   <svg
     viewBox="0 0 640 380"
     role="img"
-    aria-label="홈랩 구성도: 맥북, 휴대폰, 미니 PC, 라즈베리파이, 데스크톱이 모두 Tailnet으로 연결됩니다. 미니 PC는 Docker로 Gitea와 Samba NAS를 돌리고, 예전 워드프레스 블로그는 내렸습니다. 라즈베리파이는 정전 후 자동으로 켜지는 WoL 허브로, 데스크톱을 원격으로 깨웁니다. 공개 사이트 woosupar.dev는 집 밖의 Cloudflare Workers에서 서비스합니다."
+    aria-label="홈랩 구성도: 맥북, 휴대폰, 미니 PC, 라즈베리파이, 데스크톱이 모두 Tailnet으로 연결됩니다. 공유기에 열린 포트는 없고, SSH도 Tailnet 안에서만 열려 있습니다. 미니 PC는 Docker로 Gitea와 Samba NAS를 돌리고, 예전 워드프레스 블로그는 내렸습니다. 라즈베리파이는 정전 후 자동으로 켜지는 WoL 허브로, 데스크톱을 원격으로 깨웁니다. 공개 사이트 woosupar.dev는 집 밖의 Cloudflare Workers에서 서비스합니다."
   >
     <defs>
       <pattern id="homelab-grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -60,6 +60,7 @@ import Drawing from './Drawing.astro';
       <text x="520" y="278" text-anchor="middle" font-size="11" fill="#525252">필요할 때 원격으로 깨움</text>
 
       <text x="212" y="308" font-size="12" fill="#8d8d8d">집</text>
+      <text x="608" y="308" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#525252">공유기 인바운드 포트: 0</text>
 
       <rect x="20" y="290" width="150" height="60" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
       <text x="95" y="316" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12">woosupar.dev</text>
