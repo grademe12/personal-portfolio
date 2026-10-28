@@ -62,7 +62,7 @@ export const PATH: { when: string; title: string; note: string }[] = [
   {
     when: '2023.10 – 2025.10',
     title: '42서울',
-    note: 'C로 셸과 레이 트레이서를 만들고(miniShell, miniRT), Docker Compose로 서비스 인프라를 구성했습니다(inception).',
+    note: 'VM에 리눅스 서버를 처음 직접 세워 보면서(Born2beroot) 서버와 네트워크에 관심이 생겼습니다. 이후 C로 셸과 레이 트레이서를 만들고(miniShell, miniRT), Docker Compose로 서비스 인프라를 구성했습니다(inception).',
   },
   {
     when: '2025.09',
