@@ -7,7 +7,7 @@ export const SITE = {
     '42서울에서 C로 셸을 만들다가 클라우드 인프라로 넘어온 박우성의 포트폴리오. Terraform, EKS, 홈랩 하이브리드 인프라.',
   headline: '42서울에서 C로 셸을 만들던 사람이, 지금은 클라우드 인프라를 코드로 만듭니다.',
   intro:
-    '집에서는 미니 PC와 라즈베리파이로 하이브리드 인프라를 직접 운영하고, 팀에서는 Terraform으로 EKS 기반 MSA 인프라를 만들었습니다. 오른쪽은 개인 프로젝트 Pearl Invest의 실제 구성입니다.',
+    '집에서는 미니 PC와 라즈베리파이로 홈랩을 직접 운영하고, 팀에서는 Terraform으로 EKS 기반 MSA 인프라를 만들었습니다. 오른쪽은 지금 운영 중인 홈랩 구성입니다.',
   email: 'grademe12@gmail.com',
   github: 'https://github.com/grademe12',
   source: 'https://github.com/grademe12/personal-portfolio',
@@ -64,7 +64,11 @@ export const PATH: { when: string; title: string; note: string }[] = [
     title: '42서울',
     note: 'C로 셸과 레이 트레이서를 만들고(miniShell, miniRT), Docker Compose로 서비스 인프라를 구성했습니다(inception).',
   },
-  { when: '2025.09', title: '홈랩 시작', note: '미니 PC와 라즈베리파이로 Pearl Invest를 운영하기 시작했습니다.' },
+  {
+    when: '2025.09',
+    title: 'Pearl Invest',
+    note: '홈랩의 미니 PC와 라즈베리파이로 하이브리드 인프라를 구성했습니다.',
+  },
   {
     when: '2025.10 – 2026.03',
     title: '구름 클라우드 네이티브 엔지니어링 과정 (6회차)',

@@ -6,7 +6,7 @@ team: 42서울 2인
 period: '2024.06 – 2024.08'
 tools: [C, Make, POSIX]
 repo: https://github.com/grademe12/miniShell
-order: 5
+order: 6
 roles:
   - title: '실행부'
     items:

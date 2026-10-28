@@ -1,0 +1,58 @@
+---
+// 장비 도면처럼 테두리와 오른쪽 아래 표제란이 붙은 구성도 틀. SVG는 slot으로 받습니다.
+interface Props {
+  title: string;
+  kind: string;
+  date: string;
+}
+
+const { title, kind, date } = Astro.props;
+---
+
+<figure class="drawing">
+  <slot />
+  <figcaption class="titleblock">
+    <div>{title}</div>
+    <div>{kind}</div>
+    <div class="code">{date}</div>
+  </figcaption>
+</figure>
+
+<style>
+  .drawing {
+    margin: 0;
+    border: 1px solid var(--ink);
+    background: var(--canvas);
+  }
+  .drawing :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .titleblock {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    border-top: 1px solid var(--ink);
+    font-size: 12px;
+    letter-spacing: 0.32px;
+  }
+  .titleblock div {
+    padding: 8px 12px;
+    border-left: 1px solid var(--ink);
+  }
+  .titleblock div:first-child {
+    border-left: 0;
+    font-weight: 600;
+  }
+  .code {
+    font-family: var(--mono);
+  }
+  @media (max-width: 42rem) {
+    .titleblock {
+      grid-template-columns: 1fr auto;
+    }
+    .titleblock div:last-child {
+      display: none;
+    }
+  }
+</style>

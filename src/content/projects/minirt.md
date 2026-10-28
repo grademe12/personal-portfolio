@@ -6,7 +6,7 @@ team: 42서울 2인
 period: '2024.06 – 2024.10'
 tools: [C, MiniLibX, 벡터 수학]
 repo: https://github.com/grademe12/miniRT
-order: 6
+order: 7
 roles:
   - title: '렌더링'
     items:

@@ -2,6 +2,8 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Cable from '../../components/Cable.astro';
+import HomelabDiagram from '../../components/HomelabDiagram.astro';
+import PearlDiagram from '../../components/PearlDiagram.astro';
 import { CATEGORIES } from '../../config';
 import { getProjects } from '../../lib/content';
 
@@ -11,7 +13,8 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, summary, category, team, period, tools, repo, roles } = project.data;
+const { title, summary, category, team, period, tools, repo, roles, diagram } = project.data;
+const Diagram = { homelab: HomelabDiagram, pearl: PearlDiagram }[diagram ?? ''];
 const { Content } = await render(project);
 ---
 
@@ -39,6 +42,19 @@ const { Content } = await render(project);
         </dl>
       </div>
     </header>
+
+    {
+      Diagram && (
+        <section class="block">
+          <div class="head">
+            <h2>구성</h2>
+          </div>
+          <div class="body">
+            <Diagram />
+          </div>
+        </section>
+      )
+    }
 
     {
       roles.length > 0 && (

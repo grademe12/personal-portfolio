@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Cable from '../components/Cable.astro';
-import PearlDiagram from '../components/PearlDiagram.astro';
+import HomelabDiagram from '../components/HomelabDiagram.astro';
 import ProjectTiles from '../components/ProjectTiles.astro';
 import { SITE, TOOLS, LANGUAGES, PATH } from '../config';
 import { getProjects, getPosts, formatDate } from '../lib/content';
@@ -22,7 +22,7 @@ const posts = (await getPosts()).slice(0, 3);
       </div>
     </div>
     <div class="figure">
-      <PearlDiagram />
+      <HomelabDiagram />
     </div>
   </section>
 

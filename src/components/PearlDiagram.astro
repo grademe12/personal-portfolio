@@ -1,8 +1,9 @@
 ---
-// Pearl Invest v2.0의 실제 구성. 장비 도면처럼 모눈 시트와 표제란을 붙였습니다.
+// Pearl Invest v2.0의 실제 구성.
+import Drawing from './Drawing.astro';
 ---
 
-<figure class="drawing">
+<Drawing title="Pearl Invest v2.0 구성도" kind="개인 프로젝트" date="2025-09">
   <svg
     viewBox="0 0 640 380"
     role="img"
@@ -49,48 +50,5 @@
       </g>
     </g>
   </svg>
-  <figcaption class="titleblock">
-    <div>Pearl Invest v2.0 구성도</div>
-    <div>개인 프로젝트</div>
-    <div class="code">2025-09</div>
-  </figcaption>
-</figure>
+</Drawing>
 
-<style>
-  .drawing {
-    margin: 0;
-    border: 1px solid var(--ink);
-    background: var(--canvas);
-  }
-  svg {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  .titleblock {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    border-top: 1px solid var(--ink);
-    font-size: 12px;
-    letter-spacing: 0.32px;
-  }
-  .titleblock div {
-    padding: 8px 12px;
-    border-left: 1px solid var(--ink);
-  }
-  .titleblock div:first-child {
-    border-left: 0;
-    font-weight: 600;
-  }
-  .code {
-    font-family: var(--mono);
-  }
-  @media (max-width: 42rem) {
-    .titleblock {
-      grid-template-columns: 1fr auto;
-    }
-    .titleblock div:last-child {
-      display: none;
-    }
-  }
-</style>

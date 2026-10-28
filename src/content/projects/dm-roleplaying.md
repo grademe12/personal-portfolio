@@ -7,7 +7,7 @@ period: '2026.10 – 진행 중'
 tools: [Python, SQLite, unittest, Slack API]
 repo: https://github.com/grademe12/dm-roleplaying
 size: wide
-order: 4
+order: 5
 ---
 
 LLM에 DM 답장을 맡기는 것 자체는 쉽습니다. 어려운 건 그 뒤입니다.
