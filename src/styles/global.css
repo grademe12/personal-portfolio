@@ -16,7 +16,7 @@
   --orange: #d1621f; /* 클라우드 */
   --green: #2c8150; /* 자동화 */
   --brown: #7a5232; /* 관측 */
-  --font: 'IBM Plex Sans KR', 'IBM Plex Sans', sans-serif;
+  --font: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard Variable', Pretendard, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
   --ease: cubic-bezier(0.2, 0, 0.38, 0.9);
   color-scheme: light;
