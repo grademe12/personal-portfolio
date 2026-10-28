@@ -7,7 +7,7 @@ period: '2026.10'
 tools: [Astro, Cloudflare Workers, GitHub Actions]
 repo: https://github.com/grademe12/personal-portfolio
 size: wide
-order: 5
+order: 8
 ---
 
 ## 배경

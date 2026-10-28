@@ -7,7 +7,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
-    category: z.enum(['net', 'cloud', 'auto', 'obs']),
+    category: z.enum(['net', 'cloud', 'auto', 'obs', 'dev']),
     // 예: '개인 프로젝트', '팀 프로젝트 5인'
     team: z.string(),
     period: z.string(),

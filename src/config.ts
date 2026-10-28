@@ -4,8 +4,8 @@ export const SITE = {
   title: '박우성, 클라우드와 DevOps 엔지니어',
   role: '클라우드, DevOps 엔지니어',
   description:
-    '42서울에서 C로 서버를 짜다가 클라우드 인프라로 넘어온 박우성의 포트폴리오. Terraform, EKS, 홈랩 하이브리드 인프라.',
-  headline: '42서울에서 C로 서버를 짜던 사람이, 지금은 클라우드 인프라를 코드로 만듭니다.',
+    '42서울에서 C로 셸을 만들다가 클라우드 인프라로 넘어온 박우성의 포트폴리오. Terraform, EKS, 홈랩 하이브리드 인프라.',
+  headline: '42서울에서 C로 셸을 만들던 사람이, 지금은 클라우드 인프라를 코드로 만듭니다.',
   intro:
     '집에서는 미니 PC와 라즈베리파이로 하이브리드 인프라를 직접 운영하고, 팀에서는 Terraform으로 EKS 기반 MSA 인프라를 만들었습니다. 오른쪽은 개인 프로젝트 Pearl Invest의 실제 구성입니다.',
   email: 'grademe12@gmail.com',
@@ -16,11 +16,13 @@ export const SITE = {
 };
 
 // 분야 색은 랜선 T568B 배열에서 가져왔습니다. 프로젝트 frontmatter의 category와 같은 키를 씁니다.
+// dev는 같은 배열의 흰-파랑 줄무늬 선입니다.
 export const CATEGORIES = {
   net: '네트워크',
   cloud: '클라우드',
   auto: '자동화',
   obs: '관측',
+  dev: '개발',
 } as const;
 
 export type Category = keyof typeof CATEGORIES;
@@ -60,7 +62,7 @@ export const PATH: { when: string; title: string; note: string }[] = [
   {
     when: '2023.10 – 2025.10',
     title: '42서울',
-    note: 'C로 셸과 HTTP 서버를 만들고(miniShell, webserv), Docker Compose로 서비스 인프라를 구성했습니다(inception).',
+    note: 'C로 셸과 레이 트레이서를 만들고(miniShell, miniRT), Docker Compose로 서비스 인프라를 구성했습니다(inception).',
   },
   { when: '2025.09', title: '홈랩 시작', note: '미니 PC와 라즈베리파이로 Pearl Invest를 운영하기 시작했습니다.' },
   {
