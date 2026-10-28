@@ -1,0 +1,56 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getPosts, formatDate } from '../../lib/content';
+
+// 블로그가 꺼져 있으면 getPosts()가 빈 배열을 돌려주므로 글 페이지가 생성되지 않습니다.
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { title, description, date, tags } = post.data;
+const { Content } = await render(post);
+---
+
+<Base title={title} description={description}>
+  <p class="back"><a href="/blog/">← 블로그</a></p>
+  <article>
+    <header>
+      <time class="mono">{formatDate(date)}</time>
+      <h1>{title}</h1>
+      {
+        tags.length > 0 && (
+          <ul class="tags">
+            {tags.map((t) => (
+              <li class="tag">{t}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back {
+    margin: 0 0 1.5rem;
+    font-size: 0.9rem;
+  }
+  header {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  time {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  h1 {
+    margin: 0.25rem 0 0.75rem;
+  }
+</style>

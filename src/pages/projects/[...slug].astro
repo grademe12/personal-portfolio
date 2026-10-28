@@ -1,0 +1,63 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getProjects } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { title, summary, tags, repo, demo } = project.data;
+const { Content } = await render(project);
+---
+
+<Base title={title} description={summary}>
+  <p class="back"><a href="/projects/">← 프로젝트</a></p>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <p class="summary">{summary}</p>
+      <ul class="tags">
+        {tags.map((t) => <li class="tag">{t}</li>)}
+      </ul>
+      {
+        (repo || demo) && (
+          <p class="links">
+            {repo && <a href={repo}>소스 코드 ↗</a>}
+            {demo && <a href={demo}>데모 ↗</a>}
+          </p>
+        )
+      }
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back {
+    margin: 0 0 1.5rem;
+    font-size: 0.9rem;
+  }
+  header {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    margin: 0 0 0.5rem;
+  }
+  .summary {
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin: 1rem 0 0;
+    font-size: 0.93rem;
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../config';
+import { getPosts, formatDate } from '../../lib/content';
+
+// 블로그가 꺼져 있으면 이 페이지는 홈으로 보냅니다.
+if (!SITE.showBlog) return Astro.redirect('/');
+
+const posts = await getPosts();
+---
+
+<Base title="블로그" description="작업하며 배운 것과 트러블슈팅 기록">
+  <h1>블로그</h1>
+  <p class="lead">작업하며 배운 것, 막혔던 것, 해결한 것.</p>
+  {posts.length === 0 && <p class="empty">아직 글이 없습니다.</p>}
+  <ul class="list">
+    {
+      posts.map((p) => (
+        <li>
+          <time class="mono">{formatDate(p.data.date)}</time>
+          <div>
+            <a href={`/blog/${p.id}/`}>{p.data.title}</a>
+            {p.data.description && <p>{p.data.description}</p>}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  h1 {
+    margin: 0 0 0.5rem;
+  }
+  .lead,
+  .empty {
+    color: var(--muted);
+    margin: 0 0 2rem;
+  }
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  time {
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+  li a {
+    font-weight: 600;
+  }
+  li p {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+  @media (max-width: 30rem) {
+    li {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+  }
+</style>

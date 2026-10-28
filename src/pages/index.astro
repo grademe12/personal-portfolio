@@ -1,0 +1,183 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { SITE, SKILLS, CERTS } from '../config';
+import { getProjects, getPosts, formatDate } from '../lib/content';
+
+const projects = await getProjects();
+const featured = projects.filter((p) => p.data.featured);
+const shown = featured.length ? featured : projects.slice(0, 3);
+const posts = (await getPosts()).slice(0, 3);
+---
+
+<Base>
+  <section class="hero">
+    <p class="prompt mono"><span class="ps">$</span> whoami</p>
+    <h1>{SITE.name}</h1>
+    <p class="role mono">{SITE.role}</p>
+    <p class="intro">{SITE.intro}</p>
+    <div class="cta">
+      <a class="btn primary" href="/projects/">프로젝트 보기</a>
+      {SITE.github && <a class="btn" href={SITE.github}>GitHub</a>}
+      <a class="btn" href={`mailto:${SITE.email}`}>연락하기</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-label">Featured projects</h2>
+    <div class="grid">
+      {shown.map((p) => <ProjectCard project={p} />)}
+    </div>
+    <p class="more"><a href="/projects/">전체 프로젝트 →</a></p>
+  </section>
+
+  <section>
+    <h2 class="section-label">Stack</h2>
+    <dl class="skills">
+      {
+        SKILLS.map((s) => (
+          <div class="row">
+            <dt>{s.group}</dt>
+            <dd>{s.items.join(' · ')}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  {
+    CERTS.length > 0 && (
+      <section>
+        <h2 class="section-label">Certifications</h2>
+        <ul class="plain">
+          {CERTS.map((c) => (
+            <li>{c}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    posts.length > 0 && (
+      <section>
+        <h2 class="section-label">Recent posts</h2>
+        <ul class="plain posts">
+          {posts.map((p) => (
+            <li>
+              <time class="mono">{formatDate(p.data.date)}</time>
+              <a href={`/blog/${p.id}/`}>{p.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  section + section {
+    margin-top: 3.25rem;
+  }
+  .hero {
+    padding: 1rem 0 0.5rem;
+  }
+  .prompt {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .ps {
+    color: var(--accent);
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    margin: 0.25rem 0 0.25rem;
+  }
+  .role {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+  .intro {
+    margin: 1.25rem 0 1.5rem;
+    max-width: 38rem;
+    font-size: 1.05rem;
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.93rem;
+    background: var(--surface);
+  }
+  .btn:hover {
+    text-decoration: none;
+    border-color: var(--accent);
+  }
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .more {
+    margin: 1rem 0 0;
+    font-size: 0.93rem;
+  }
+  .skills {
+    margin: 0;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .row:first-child {
+    border-top: 1px solid var(--border);
+  }
+  dt {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding-top: 0.1rem;
+  }
+  dd {
+    margin: 0;
+  }
+  @media (max-width: 30rem) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
+    }
+  }
+  .plain {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .posts li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.35rem 0;
+  }
+  .posts time {
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+</style>

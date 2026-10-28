@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404">
+  <p class="mono code">HTTP/1.1 404 Not Found</p>
+  <h1>페이지를 찾을 수 없어요</h1>
+  <p><a href="/">← 홈으로</a></p>
+</Base>
+
+<style>
+  .code {
+    color: var(--accent);
+    margin: 0;
+  }
+  h1 {
+    margin: 0.25rem 0 1rem;
+  }
+</style>
