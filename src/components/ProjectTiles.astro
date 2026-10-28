@@ -1,0 +1,158 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Cable from './Cable.astro';
+import { CATEGORIES } from '../config';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="tiles">
+  {
+    projects.map((project) => {
+      const { title, summary, category, team, period, tools, size, roles } = project.data;
+      return (
+        <a class={`tile ${size}`} href={`/projects/${project.id}/`}>
+          <div class="kind">
+            <Cable category={category} />
+            {CATEGORIES[category]}, {team}
+          </div>
+          <h3>{title}</h3>
+          <p>{summary}</p>
+          {size === 'lead' && roles.length > 0 && (
+            <div class="role">
+              {roles.map((role) => (
+                <>
+                  <h4>{role.title}</h4>
+                  <ul>
+                    {role.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              ))}
+            </div>
+          )}
+          <div class="meta">
+            <span>{period}</span>
+            <span>{tools.join(', ')}</span>
+          </div>
+        </a>
+      );
+    })
+  }
+</div>
+
+<style>
+  .tiles {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-flow: dense;
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+  }
+  .tile {
+    min-width: 0;
+    background: var(--surface-1);
+    padding: 24px 24px 32px;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    transition: background 110ms var(--ease);
+  }
+  .tile:hover {
+    background: #e8e8e8;
+    text-decoration: none;
+  }
+  .tile.lead {
+    grid-row: span 2;
+    background: var(--canvas);
+  }
+  .tile.lead:hover {
+    background: #fafafa;
+  }
+  .tile.wide {
+    grid-column: 1 / -1;
+    min-height: 0;
+  }
+  .tile.wide p {
+    max-width: 52rem;
+  }
+  .kind {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.32px;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.33;
+    margin: 0 0 12px;
+  }
+  .lead h3 {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.25;
+  }
+  p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 14px;
+    line-height: 1.43;
+  }
+  .lead p {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 36rem;
+  }
+  .role {
+    margin-top: 24px;
+    padding-top: 4px;
+    border-top: 1px solid var(--hairline);
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 16px 0 6px;
+  }
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+  .meta {
+    margin-top: auto;
+    padding-top: 24px;
+    font-size: 12px;
+    letter-spacing: 0.32px;
+    color: var(--ink-muted);
+  }
+  .meta span {
+    display: block;
+  }
+  .meta span + span {
+    margin-top: 2px;
+  }
+
+  @media (max-width: 42rem) {
+    .tiles {
+      grid-template-columns: 1fr;
+    }
+    .tile.lead {
+      grid-row: auto;
+    }
+    .tile {
+      min-height: 0;
+    }
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+// Pearl Invest v2.0의 실제 구성. 장비 도면처럼 모눈 시트와 표제란을 붙였습니다.
+---
+
+<figure class="drawing">
+  <svg
+    viewBox="0 0 640 380"
+    role="img"
+    aria-label="Pearl Invest v2.0 구성도: 사용자 요청은 미니 PC의 NGINX와 Next.js BFF가 받아 NodePort로 라즈베리파이 K3s의 auth, trading, portfolio API에 전달합니다. 관리자는 EC2의 Teleport 클러스터를 거쳐 RBAC와 단기 인증서로 K3s에 접근합니다."
+  >
+    <defs>
+      <pattern id="pearl-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M20 0H0V20" fill="none" stroke="#f0f0f0" stroke-width="1"></path>
+      </pattern>
+    </defs>
+    <rect width="640" height="380" fill="url(#pearl-grid)"></rect>
+    <g fill="none">
+      <path d="M120 84 H200" stroke="#0f62fe" stroke-width="4"></path>
+      <path d="M295 124 V250" stroke="#0f62fe" stroke-width="4"></path>
+      <path d="M530 108 V160" stroke="#d1621f" stroke-width="4"></path>
+      <path d="M530 236 V292 H390" stroke="#d1621f" stroke-width="4" stroke-dasharray="10 6"></path>
+    </g>
+    <g font-family="IBM Plex Sans KR, sans-serif" font-size="13" fill="#161616">
+      <rect x="20" y="60" width="100" height="48" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+      <text x="70" y="89" text-anchor="middle" font-weight="600">사용자</text>
+
+      <rect x="200" y="44" width="190" height="80" fill="#161616"></rect>
+      <text x="295" y="72" text-anchor="middle" font-weight="600" fill="#fff">미니 PC</text>
+      <text x="295" y="92" text-anchor="middle" fill="#c6c6c6" font-size="12" font-family="IBM Plex Mono, monospace">NGINX, Next.js BFF</text>
+      <text x="295" y="110" text-anchor="middle" fill="#c6c6c6" font-size="12">Debian, Docker Compose</text>
+
+      <rect x="200" y="250" width="190" height="84" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+      <text x="295" y="278" text-anchor="middle" font-weight="600">라즈베리파이 K3s</text>
+      <text x="295" y="298" text-anchor="middle" fill="#525252" font-size="12" font-family="IBM Plex Mono, monospace">auth / trading /</text>
+      <text x="295" y="316" text-anchor="middle" fill="#525252" font-size="12" font-family="IBM Plex Mono, monospace">portfolio API</text>
+
+      <rect x="480" y="60" width="100" height="48" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+      <text x="530" y="89" text-anchor="middle" font-weight="600">관리자</text>
+
+      <rect x="445" y="160" width="170" height="76" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+      <text x="530" y="188" text-anchor="middle" font-weight="600">Teleport (EC2)</text>
+      <text x="530" y="208" text-anchor="middle" fill="#525252" font-size="12">RBAC, 단기 인증서</text>
+      <text x="530" y="225" text-anchor="middle" fill="#525252" font-size="12" font-family="IBM Plex Mono, monospace">v18.2</text>
+
+      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#525252">
+        <text x="160" y="74" text-anchor="middle">HTTP</text>
+        <text x="305" y="192">NodePort</text>
+        <text x="400" y="284">kube agent</text>
+      </g>
+    </g>
+  </svg>
+  <figcaption class="titleblock">
+    <div>Pearl Invest v2.0 구성도</div>
+    <div>개인 프로젝트</div>
+    <div class="code">2025-09</div>
+  </figcaption>
+</figure>
+
+<style>
+  .drawing {
+    margin: 0;
+    border: 1px solid var(--ink);
+    background: var(--canvas);
+  }
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .titleblock {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    border-top: 1px solid var(--ink);
+    font-size: 12px;
+    letter-spacing: 0.32px;
+  }
+  .titleblock div {
+    padding: 8px 12px;
+    border-left: 1px solid var(--ink);
+  }
+  .titleblock div:first-child {
+    border-left: 0;
+    font-weight: 600;
+  }
+  .code {
+    font-family: var(--mono);
+  }
+  @media (max-width: 42rem) {
+    .titleblock {
+      grid-template-columns: 1fr auto;
+    }
+    .titleblock div:last-child {
+      display: none;
+    }
+  }
+</style>

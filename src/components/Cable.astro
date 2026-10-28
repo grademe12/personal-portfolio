@@ -1,0 +1,11 @@
+---
+import type { Category } from '../config';
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+---
+
+<span class={`cable c-${category}`} aria-hidden="true"></span>

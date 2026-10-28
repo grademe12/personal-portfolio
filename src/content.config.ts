@@ -7,12 +7,18 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
-    tags: z.array(z.string()).default([]),
+    category: z.enum(['net', 'cloud', 'auto', 'obs']),
+    // 예: '개인 프로젝트', '팀 프로젝트 5인'
+    team: z.string(),
+    period: z.string(),
+    tools: z.array(z.string()).default([]),
     repo: z.string().optional(),
-    demo: z.string().optional(),
+    // 홈 화면 타일 크기: lead는 왼쪽 큰 칸, wide는 한 줄 전체
+    size: z.enum(['lead', 'wide', 'normal']).default('normal'),
+    // 팀 프로젝트에서 본인이 한 일. 타일과 상세 페이지에 표시됩니다.
+    roles: z.array(z.object({ title: z.string(), items: z.array(z.string()) })).default([]),
     // 숫자가 작을수록 앞에 표시됩니다.
     order: z.number().default(100),
-    featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });

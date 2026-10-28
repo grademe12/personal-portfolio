@@ -12,7 +12,7 @@ npm run dev      # http://localhost:4321
 
 ## 내 정보로 바꾸기
 
-`src/config.ts` 한 파일만 고치면 됩니다. 이름, 소개, 이메일, GitHub 주소, 기술 스택, 자격증이 들어 있습니다.
+`src/config.ts` 한 파일에 이름, 첫 화면 문구, 이메일, GitHub, 다루는 도구 표, 걸어온 길이 모여 있습니다.
 
 ## 프로젝트 추가
 
@@ -21,23 +21,24 @@ npm run dev      # http://localhost:4321
 ```markdown
 ---
 title: 프로젝트 이름
-summary: 한두 줄 요약 (카드에 표시)
-tags: [Terraform, AWS]
-repo: https://github.com/your-id/repo   # 선택
-order: 1           # 작을수록 앞에
-featured: true     # 홈에 표시
-draft: false       # true면 숨김
+summary: 두세 줄 요약 (홈 화면 타일에 표시)
+category: cloud          # net, cloud, auto, obs 중 하나 (랜선 색)
+team: 개인 프로젝트       # 또는 '팀 프로젝트 5인'
+period: '2026.01 – 2026.03'   # 따옴표 필수 (없으면 숫자로 읽힘)
+tools: [Terraform, EKS]
+repo: https://github.com/...  # 선택
+size: normal             # lead(왼쪽 큰 칸), wide(한 줄 전체), normal
+order: 1                 # 작을수록 앞에
+roles:                   # 팀 프로젝트에서 내가 한 일 (선택)
+  - title: '인프라'
+    items: [EKS IRSA 구성]
+draft: false             # true면 숨김
 ---
 
-## 아키텍처
-## 설계 이유
-## 트러블슈팅
-## 실행 방법
+본문은 상세 페이지의 "자세히" 영역에 들어갑니다.
 ```
 
-`homelab-zero-trust.md`, `containerlab-bgp.md` 는 **예시**입니다. 실제 프로젝트로 바꾸거나 지우세요.
-
-이미지는 `public/images/` 에 넣고 본문에서 `![설명](/images/파일.png)` 로 씁니다.
+첫 화면 구성도는 `src/components/PearlDiagram.astro` 의 SVG입니다.
 
 ## 블로그 켜기
 

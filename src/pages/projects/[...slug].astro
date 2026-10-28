@@ -1,6 +1,8 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Cable from '../../components/Cable.astro';
+import { CATEGORIES } from '../../config';
 import { getProjects } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -9,55 +11,133 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, summary, tags, repo, demo } = project.data;
+const { title, summary, category, team, period, tools, repo, roles } = project.data;
 const { Content } = await render(project);
 ---
 
 <Base title={title} description={summary}>
-  <p class="back"><a href="/projects/">← 프로젝트</a></p>
   <article>
-    <header>
-      <h1>{title}</h1>
-      <p class="summary">{summary}</p>
-      <ul class="tags">
-        {tags.map((t) => <li class="tag">{t}</li>)}
-      </ul>
-      {
-        (repo || demo) && (
-          <p class="links">
-            {repo && <a href={repo}>소스 코드 ↗</a>}
-            {demo && <a href={demo}>데모 ↗</a>}
-          </p>
-        )
-      }
+    <header class="block">
+      <div class="head">
+        <p class="back"><a href="/projects/">프로젝트 목록</a></p>
+      </div>
+      <div class="body">
+        <p class="kind"><Cable category={category} />{CATEGORIES[category]}, {team}</p>
+        <h1>{title}</h1>
+        <p class="summary">{summary}</p>
+        <dl class="facts">
+          <div><dt>기간</dt><dd>{period}</dd></div>
+          <div><dt>도구</dt><dd>{tools.join(', ')}</dd></div>
+          {
+            repo && (
+              <div>
+                <dt>소스</dt>
+                <dd><a href={repo}>{repo.replace(/^https?:\/\//, '')}</a></dd>
+              </div>
+            )
+          }
+        </dl>
+      </div>
     </header>
-    <div class="prose">
-      <Content />
-    </div>
+
+    {
+      roles.length > 0 && (
+        <section class="block">
+          <div class="head">
+            <h2>제가 한 일</h2>
+          </div>
+          <div class="body roles">
+            {roles.map((role) => (
+              <div>
+                <h3>{role.title}</h3>
+                <ul>
+                  {role.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="block">
+      <div class="head">
+        <h2>자세히</h2>
+      </div>
+      <div class="body prose">
+        <Content />
+      </div>
+    </section>
   </article>
 </Base>
 
 <style>
   .back {
-    margin: 0 0 1.5rem;
-    font-size: 0.9rem;
+    margin: 6px 0 0;
+    font-size: 14px;
   }
-  header {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.5rem;
+  .kind {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.32px;
+    color: var(--ink-muted);
+    margin: 0 0 16px;
   }
   h1 {
-    margin: 0 0 0.5rem;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0 0 16px;
+    max-width: 24ch;
   }
   .summary {
-    color: var(--muted);
-    margin: 0 0 1rem;
+    font-size: 18px;
+    color: var(--ink-muted);
+    margin: 0 0 32px;
+    max-width: 44rem;
   }
-  .links {
-    display: flex;
-    gap: 1.25rem;
-    margin: 1rem 0 0;
-    font-size: 0.93rem;
+  .facts {
+    margin: 0;
+    border-top: 1px solid var(--hairline);
+    font-size: 14px;
+  }
+  .facts div {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .facts dt {
+    color: var(--ink-muted);
+  }
+  .facts dd {
+    margin: 0;
+  }
+  .roles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .roles h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .roles ul {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.7;
+  }
+  @media (max-width: 42rem) {
+    h1 {
+      font-size: 30px;
+    }
+    .roles {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
