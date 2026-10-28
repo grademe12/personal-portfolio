@@ -7,7 +7,7 @@ import Drawing from './Drawing.astro';
   <svg
     viewBox="0 0 640 380"
     role="img"
-    aria-label="홈랩 구성도: 맥북, 휴대폰, 미니 PC, 라즈베리파이, 데스크톱이 모두 Tailnet으로 연결됩니다. 공유기에 열린 포트는 없고, SSH도 Tailnet 안에서만 열려 있습니다. 미니 PC는 Docker로 Gitea와 Samba NAS를 돌리고, 예전 워드프레스 블로그는 내렸습니다. 라즈베리파이는 정전 후 자동으로 켜지는 WoL 허브로, 데스크톱을 원격으로 깨웁니다. 공개 사이트 woosupar.dev는 집 밖의 Cloudflare Workers에서 서비스합니다."
+    aria-label="홈랩 구성도: 맥북, 휴대폰, 미니 PC, 라즈베리파이, 데스크톱이 모두 Tailnet으로 연결됩니다. 공유기에 열린 포트는 없고, SSH도 Tailnet 안에서만 열려 있습니다. Debian 미니 PC는 Docker로 Gitea와 Samba NAS를 돌리고, 예전 워드프레스 블로그는 내렸습니다. 라즈베리파이는 정전 후 자동으로 켜지는 WoL 허브로, 미니 PC와 데스크톱을 원격으로 깨웁니다. 데스크톱은 Sunshine을 돌리고, 밖에서는 맥북의 Moonlight로 Tailnet을 거쳐 원격 작업을 합니다. 공개 사이트 woosupar.dev는 집 밖의 Cloudflare Workers에서 서비스합니다."
   >
     <defs>
       <pattern id="homelab-grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -28,8 +28,8 @@ import Drawing from './Drawing.astro';
       <path d="M175 44 H520 V60"></path>
       <path d="M175 262 H440"></path>
     </g>
-    <!-- WoL: 라즈베리파이가 데스크톱을 깨움 -->
-    <path d="M520 170 V230" fill="none" stroke="#0f62fe" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"></path>
+    <!-- WoL: 라즈베리파이가 미니 PC와 데스크톱을 깨움 -->
+    <path d="M520 170 V230 M520 200 H320 V170" fill="none" stroke="#0f62fe" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"></path>
     <!-- 공개 사이트 -->
     <path d="M20 290 H170" stroke="#d1621f" stroke-width="4"></path>
 
@@ -44,7 +44,7 @@ import Drawing from './Drawing.astro';
 
       <rect x="230" y="60" width="180" height="110" fill="#161616"></rect>
       <text x="320" y="88" text-anchor="middle" font-weight="600" fill="#fff">미니 PC</text>
-      <text x="320" y="108" text-anchor="middle" font-size="12" fill="#c6c6c6">Docker</text>
+      <text x="320" y="108" text-anchor="middle" font-size="12" fill="#c6c6c6">Debian, Docker</text>
       <text x="320" y="128" text-anchor="middle" font-size="12" fill="#c6c6c6" font-family="IBM Plex Mono, monospace">Gitea, Samba NAS</text>
       <text x="320" y="152" text-anchor="middle" font-size="11" fill="#8d8d8d" font-family="IBM Plex Mono, monospace" text-decoration="line-through">WordPress</text>
 
@@ -53,11 +53,12 @@ import Drawing from './Drawing.astro';
       <text x="520" y="108" text-anchor="middle" font-size="12" fill="#525252">WoL 허브</text>
       <text x="520" y="128" text-anchor="middle" font-size="11" fill="#525252">정전 후 자동 부팅</text>
 
-      <text x="530" y="205" font-family="IBM Plex Mono, monospace" font-size="12" fill="#525252">WoL</text>
+      <text x="420" y="193" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#525252">WoL</text>
+      <text x="300" y="254" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#525252">Moonlight</text>
 
       <rect x="440" y="230" width="160" height="64" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
       <text x="520" y="258" text-anchor="middle" font-weight="600">데스크톱</text>
-      <text x="520" y="278" text-anchor="middle" font-size="11" fill="#525252">필요할 때 원격으로 깨움</text>
+      <text x="520" y="278" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">Sunshine</text>
 
       <text x="212" y="308" font-size="12" fill="#8d8d8d">집</text>
       <text x="608" y="308" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" fill="#525252">공유기 인바운드 포트: 0</text>
