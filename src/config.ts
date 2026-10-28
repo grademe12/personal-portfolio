@@ -8,9 +8,9 @@ export const SITE = {
   headline: '42서울에서 C로 서버를 짜던 사람이, 지금은 클라우드 인프라를 코드로 만듭니다.',
   intro:
     '집에서는 미니 PC와 라즈베리파이로 하이브리드 인프라를 직접 운영하고, 팀에서는 Terraform으로 EKS 기반 MSA 인프라를 만들었습니다. 오른쪽은 개인 프로젝트 Pearl Invest의 실제 구성입니다.',
-  closing: '같이 일할 팀을 찾고 있습니다.',
   email: 'grademe12@gmail.com',
   github: 'https://github.com/grademe12',
+  source: 'https://github.com/grademe12/personal-portfolio',
   // 블로그를 쓸 준비가 되면 true로 바꾸세요.
   showBlog: true,
 };

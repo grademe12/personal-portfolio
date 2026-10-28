@@ -57,7 +57,14 @@ const githubLabel = SITE.github.replace(/^https?:\/\//, '');
 
     <footer>
       <div class="grid inner">
-        <h2>{SITE.closing}</h2>
+        <div class="sign">
+          <p class="who">{SITE.name}</p>
+          <p class="role">{SITE.role}</p>
+          <p class="colophon">
+            이 사이트는 Astro로 빌드해 Cloudflare Workers에서 서비스합니다. 글과 설정은 모두 Git에 있습니다.
+            <a href={SITE.source}>소스 보기</a>
+          </p>
+        </div>
         <ul>
           <li><a href={`mailto:${SITE.email}`}>이메일<span>{SITE.email}</span></a></li>
           <li><a href={SITE.github}>GitHub<span>{githubLabel}</span></a></li>
@@ -127,13 +134,33 @@ const githubLabel = SITE.github.replace(/^https?:\/\//, '');
     padding-top: 48px;
     padding-bottom: 48px;
   }
-  footer h2 {
+  .sign {
     grid-column: 1 / 9;
-    font-size: 42px;
+  }
+  .sign p {
+    margin: 0;
+  }
+  .who {
+    font-size: 32px;
     font-weight: 300;
     line-height: 1.2;
     color: var(--inverse-ink);
-    margin: 0;
+  }
+  .role {
+    margin-top: 4px !important;
+    font-size: 16px;
+  }
+  .colophon {
+    margin-top: 24px !important;
+    max-width: 30rem;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .colophon a {
+    color: var(--inverse-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-left: 4px;
   }
   footer ul {
     grid-column: 9 / 17;
@@ -189,8 +216,8 @@ const githubLabel = SITE.github.replace(/^https?:\/\//, '');
     }
   }
   @media (max-width: 42rem) {
-    footer h2 {
-      font-size: 30px;
+    .who {
+      font-size: 26px;
     }
   }
 </style>
