@@ -47,19 +47,21 @@ draft: false             # true면 숨김
 
 블로그가 꺼져 있으면 메뉴에서 사라지고, `/blog/` 는 홈으로 이동합니다.
 
-## 배포 (Cloudflare Pages)
+## 배포 (Cloudflare)
 
-1. 이 저장소를 GitHub에 push
-2. Cloudflare 대시보드 → Workers & Pages → Create → Pages → Git 저장소 연결
-3. 빌드 설정
-   - Framework preset: **Astro**
-   - Build command: `npm run build`
-   - Output directory: `dist`
-   - 환경 변수 `NODE_VERSION` = `22`
-4. Custom domains에서 도메인 연결 (도메인 DNS가 Cloudflare에 있으면 자동 설정)
-5. `astro.config.mjs` 의 `site` 를 실제 도메인으로 변경
+Cloudflare 대시보드 → Workers & Pages → Create → Git 저장소 연결.
 
-이후로는 `main` 에 push할 때마다 자동 배포되고, PR마다 미리보기 URL이 생깁니다.
+**Workers로 만든 경우 (프레임워크 선택 칸이 없는 화면)**
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy` (기본값 그대로)
+- 저장소의 `wrangler.jsonc` 가 `dist/` 를 정적 자산으로 올립니다.
+
+**Pages로 만든 경우**
+- Framework preset: Astro, Build command: `npm run build`, Output directory: `dist`
+
+Node 버전은 `.node-version` / `.nvmrc` (22)로 지정되어 있습니다.
+배포 후 도메인을 연결하면 `astro.config.mjs` 의 `site` 를 실제 주소로 바꾸세요.
+이후로는 `main` 에 push할 때마다 자동 배포됩니다.
 `.github/workflows/build.yml` 은 push/PR마다 빌드가 깨지지 않았는지 확인합니다.
 
 ## 구조
