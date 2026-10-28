@@ -14,6 +14,7 @@ roles:
       - 모놀리식 Django를 auth, posts, events, notifications 4개 서비스와 outbox-worker 등 워커로 분리 (서비스 저장소 7개 대부분 직접 작성)
       - 서비스 간 직접 DB 참조를 없애고 내부 API로 전환, RDS 한 대 안에서 스키마 3개로 격리
       - Outbox 패턴과 shared 패키지로 정합성과 내부 API 계약 관리
+      - 섞여 있던 user와 auth를 나누고, auth는 Lambda로 분리해 API Gateway Authorizer에서 JWT 검증
   - title: '인프라: stagelog-infra 커밋 수 1위'
     items:
       - EKS IRSA와 STS VPC Endpoint 구성
@@ -49,6 +50,19 @@ roles:
 - **확장:** Karpenter 노드 확장과 Consolidation, 파드별 Spot과 On-Demand 배치, CPU 기준 HPA
 - **관측:** kube-prometheus-stack, Fluent Bit에서 Loki로 로그 수집, Alertmanager에서 Discord 알림, Kubecost로 비용 확인
 - **비동기 알림:** EventBridge, SQS, DynamoDB 파이프라인
+- **부하 테스트:** k6로 사용자를 4,000명까지 올려 HPA가 파드를 최대 5개로 늘리고, 자원이 모자라자 Karpenter가 노드를 추가하는 것을 확인했습니다. 부하가 빠지면 Consolidation으로 노드가 다시 줄어듭니다.
+
+## 아쉬웠던 점
+
+발표 때 제가 맡은 백엔드에서 직접 짚은 두 가지입니다.
+
+### API Gateway의 위치가 애매했다
+
+인증을 Authorizer로 떼어 내려고 API Gateway를 넣었지만, 결과적으로는 단순히 라우팅만 하고 있었습니다. 그 역할의 상당 부분은 ALB로도 할 수 있었습니다. 게다가 API Gateway의 기본 주소(`execute-api`)로 직접 접근할 수 있는 경로가 남아 있었습니다.
+
+### 알림 메시지가 사라질 수 있었다
+
+Outbox로 정합성을 챙겼지만, 그 뒤 EventBridge 단계에 빈틈이 있었습니다. 이벤트가 어떤 룰과도 맞지 않으면 그대로 버려지고, 룰을 잘못 고치는 실수 하나로 알림이 영구히 유실될 수 있었습니다. 별도의 재처리 경로와 모니터링을 붙여야 막을 수 있는 부분이었습니다.
 
 ## 이전 단계에서 한 것
 
