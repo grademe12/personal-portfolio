@@ -7,7 +7,7 @@ import Drawing from './Drawing.astro';
   <svg
     viewBox="0 0 640 380"
     role="img"
-    aria-label="홈랩 구성도: 맥북, 휴대폰, 미니 PC, 라즈베리파이, 데스크톱이 모두 Tailnet으로 연결됩니다. 미니 PC는 Docker로 Gitea와 NAS를 돌리고, 예전 워드프레스 블로그는 내렸습니다. 라즈베리파이는 정전 후 자동으로 켜지는 WoL 허브로, 데스크톱을 원격으로 깨웁니다. 공개 사이트 woosupar.dev는 집 밖의 Cloudflare Workers에서 서비스합니다."
+    aria-label="홈랩 구성도: 맥북, 휴대폰, 미니 PC, 라즈베리파이, 데스크톱이 모두 Tailnet으로 연결됩니다. 미니 PC는 Docker로 Gitea와 Samba NAS를 돌리고, 예전 워드프레스 블로그는 내렸습니다. 라즈베리파이는 정전 후 자동으로 켜지는 WoL 허브로, 데스크톱을 원격으로 깨웁니다. 공개 사이트 woosupar.dev는 집 밖의 Cloudflare Workers에서 서비스합니다."
   >
     <defs>
       <pattern id="homelab-grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -45,7 +45,7 @@ import Drawing from './Drawing.astro';
       <rect x="230" y="60" width="180" height="110" fill="#161616"></rect>
       <text x="320" y="88" text-anchor="middle" font-weight="600" fill="#fff">미니 PC</text>
       <text x="320" y="108" text-anchor="middle" font-size="12" fill="#c6c6c6">Docker</text>
-      <text x="320" y="128" text-anchor="middle" font-size="12" fill="#c6c6c6" font-family="IBM Plex Mono, monospace">Gitea, NAS</text>
+      <text x="320" y="128" text-anchor="middle" font-size="12" fill="#c6c6c6" font-family="IBM Plex Mono, monospace">Gitea, Samba NAS</text>
       <text x="320" y="152" text-anchor="middle" font-size="11" fill="#8d8d8d" font-family="IBM Plex Mono, monospace" text-decoration="line-through">WordPress</text>
 
       <rect x="440" y="60" width="160" height="110" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>

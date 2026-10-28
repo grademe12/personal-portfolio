@@ -4,7 +4,7 @@ summary: 미니 PC, 라즈베리파이, 데스크톱, 맥북, 휴대폰을 Tailn
 category: net
 team: 개인 프로젝트
 period: '운영 중'
-tools: [Docker, Tailscale, Gitea, NAS, Wake-on-LAN]
+tools: [Docker, Tailscale, Gitea, Samba, Wake-on-LAN]
 diagram: homelab
 size: wide
 order: 4
@@ -16,7 +16,7 @@ order: 4
 
 | 장비 | 하는 일 |
 |---|---|
-| 미니 PC | 대부분의 서비스를 Docker로 운영합니다. 개인 Git 서버(Gitea)와 NAS가 여기 있습니다. |
+| 미니 PC | 대부분의 서비스를 Docker로 운영합니다. 개인 Git 서버(Gitea)와 Samba로 공유하는 NAS가 여기 있습니다. |
 | 라즈베리파이 | 밖에서 다른 장비를 깨우는 WoL 허브입니다. 아직 자원이 남아 있어 다른 용도도 붙일 수 있습니다. |
 | 데스크톱 | 평소에는 꺼 두고, 필요할 때 라즈베리파이를 통해 원격으로 켭니다. |
 | 맥북, 휴대폰 | 밖에서 Tailnet으로 집 장비에 접속합니다. |
