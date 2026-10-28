@@ -12,7 +12,7 @@ export const SITE = {
   email: 'grademe12@gmail.com',
   github: 'https://github.com/grademe12',
   // 블로그를 쓸 준비가 되면 true로 바꾸세요.
-  showBlog: false,
+  showBlog: true,
 };
 
 // 분야 색은 랜선 T568B 배열에서 가져왔습니다. 프로젝트 frontmatter의 category와 같은 키를 씁니다.
