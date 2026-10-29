@@ -29,6 +29,12 @@ export type Category = keyof typeof CATEGORIES;
 
 export const TOOLS: { category: Category; label: string; items: string; where: string }[] = [
   {
+    category: 'dev',
+    label: '언어',
+    items: 'C (주력), Python (Django), TypeScript (NestJS, Next.js), C++',
+    where: '42서울, 팀, 개인',
+  },
+  {
     category: 'cloud',
     label: '클라우드',
     items:
@@ -56,7 +62,7 @@ export const TOOLS: { category: Category; label: string; items: string; where: s
 ];
 
 export const LANGUAGES =
-  '언어는 Python(Django)과 TypeScript(NestJS, Next.js)를 주로 쓰고, 42서울에서 C와 C++를 익혔습니다.';
+  'C는 42서울 2년 동안 miniShell, miniRT 같은 과제로 가장 깊게 다룬 언어입니다. 프로세스, 파일 디스크립터, 메모리를 직접 다루던 경험이 지금 인프라를 볼 때의 바탕입니다.';
 
 export const PATH: { when: string; title: string; note: string }[] = [
   {
