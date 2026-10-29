@@ -8,6 +8,7 @@ tools: [Astro, Cloudflare Workers, GitHub Actions]
 repo: https://github.com/grademe12/personal-portfolio
 size: wide
 order: 9
+short: 이 사이트
 ---
 
 ## 배경

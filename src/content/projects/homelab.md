@@ -7,7 +7,17 @@ period: '운영 중'
 tools: [Debian, Docker, Tailscale, Gitea, Samba, Wake-on-LAN, Sunshine]
 diagram: homelab
 size: wide
-order: 4
+order: 2
+short: 홈랩
+featured: true
+metric:
+  value: '0'
+  label: 공유기에 열린 인바운드 포트
+highlights:
+  - 미니 PC(Debian)에서 Docker로 Gitea와 Samba NAS 운영
+  - 정전 뒤 알아서 켜지는 라즈베리파이로 미니 PC와 데스크톱을 원격 WoL
+  - SSH와 원격 데스크톱(Sunshine, Moonlight)도 Tailnet 안에서만
+  - 공개 사이트는 집 밖 Cloudflare로 분리
 ---
 
 집에 있는 장비로 직접 운영하는 환경입니다. 개인 프로젝트를 올려 보고, 망가뜨리고, 다시 세우는 곳입니다.

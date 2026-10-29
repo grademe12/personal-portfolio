@@ -21,6 +21,16 @@ roles:
       - API Gateway를 VPC Link로 internal ALB에 연결하고 Lambda authorizer 연동
       - .env 파일 배포 대신 서비스별 SSM Parameter Store로 전환
       - auth Lambda CI/CD와 ECR 푸시용 IAM 역할
+short: Stagelog
+featured: true
+metric:
+  value: '69'
+  label: stagelog-infra 커밋, 팀 5명 중 가장 많음
+highlights:
+  - 모놀리식 Django를 4개 서비스와 워커로 분리하고 Outbox 패턴으로 정합성 확보
+  - auth를 Lambda로 떼어 내 API Gateway Authorizer에서 JWT 검증
+  - 수명주기별 Terraform 스택에서 EKS IRSA, STS VPC Endpoint, API Gateway VPC Link 구성
+  - .env 배포를 서비스별 SSM Parameter Store로 전환
 ---
 
 구름 클라우드 네이티브 엔지니어링 과정의 마지막 팀 프로젝트(2026.02.27 – 2026.03.30)입니다. 같은 서비스를 1차(AWS 배포), 2차(보안 취약점 진단과 대응), 3차(MSA와 EKS)로 이어서 발전시켰고, 이 페이지는 3차를 중심으로 정리했습니다.

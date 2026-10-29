@@ -6,7 +6,8 @@ team: 개인 프로젝트
 period: '2026.06 – 진행 중'
 tools: [Django, k6, GCE, Tailscale, Prometheus]
 repo: https://github.com/grademe12/stock-market
-order: 3
+order: 4
+short: 모의 주식 거래소
 ---
 
 주식 거래 애플리케이션을 흉내 낸 학습용 프로젝트입니다. 단일 Django 매칭 엔진에서 시작해, 부하 제어와 테스트, 모니터링, 이벤트 파이프라인을 필요해지는 시점에 하나씩 붙이고 있습니다. 실제 증권사 주문은 넣지 않습니다.

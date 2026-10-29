@@ -2,11 +2,13 @@
 import Base from '../layouts/Base.astro';
 import Cable from '../components/Cable.astro';
 import HomelabDiagram from '../components/HomelabDiagram.astro';
-import ProjectTiles from '../components/ProjectTiles.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
 import { SITE, TOOLS, LANGUAGES, PATH } from '../config';
 import { getProjects, getPosts, formatDate } from '../lib/content';
 
 const projects = await getProjects();
+const featured = projects.filter((p) => p.data.featured);
+const others = projects.filter((p) => !p.data.featured);
 const posts = (await getPosts()).slice(0, 3);
 ---
 
@@ -28,11 +30,19 @@ const posts = (await getPosts()).slice(0, 3);
 
   <section class="block" id="projects">
     <div class="head">
-      <h2>프로젝트</h2>
+      <h2>대표 프로젝트</h2>
       <p>혼자 만든 것과 팀으로 만든 것을 구분하고, 팀 프로젝트는 제가 커밋한 부분만 적었습니다.</p>
     </div>
     <div class="body">
-      <ProjectTiles projects={projects} />
+      <FeaturedProjects projects={featured} />
+      {
+        others.length > 0 && (
+          <p class="all">
+            <a href="/projects/">다른 프로젝트 {others.length}개 더 보기</a>
+            <span>{others.map((p) => p.data.short ?? p.data.title).join(', ')}</span>
+          </p>
+        )
+      }
     </div>
   </section>
 
@@ -144,6 +154,20 @@ const posts = (await getPosts()).slice(0, 3);
     display: flex;
     flex-wrap: wrap;
     gap: 1px;
+  }
+
+  .all {
+    margin: 24px 0 0;
+    font-size: 14px;
+  }
+  .all a {
+    font-weight: 600;
+  }
+  .all span {
+    display: block;
+    margin-top: 4px;
+    color: var(--ink-muted);
+    font-size: 13px;
   }
 
   td.label {

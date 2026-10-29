@@ -6,7 +6,16 @@ team: 개인 프로젝트
 period: '2025.10'
 tools: [NCP NKS, Terraform, NestJS, Next.js]
 repo: https://github.com/grademe12/k8s-multi-cloud-monitor
-order: 2
+order: 3
+short: 멀티 클러스터 모니터
+featured: true
+metric:
+  value: '82'
+  label: 커밋, 인프라부터 앱과 배포까지 혼자
+highlights:
+  - Terraform으로 NCP에 VPC, NKS, PostgreSQL 구성
+  - NestJS 백엔드가 등록된 클러스터의 지표를 수집하고, 접근 토큰은 암호화해 저장
+  - GitHub Actions로 NKS에 배포하고 Ingress에 HTTPS 적용
 ---
 
 여러 클라우드에 흩어진 쿠버네티스 클러스터를 등록하고, 지표를 한곳에서 보는 웹 앱입니다. 앱과 그 앱이 돌아갈 인프라를 모두 혼자 만들었습니다.

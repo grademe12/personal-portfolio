@@ -9,6 +9,7 @@ repo: https://github.com/grademe12/Pearl-Invest
 diagram: pearl
 size: wide
 order: 8
+short: Pearl Invest
 ---
 
 집에 있는 미니 PC와 라즈베리파이로 시작한 개인 프로젝트입니다. 처음에는 MSA 기반 투자 포트폴리오 서비스였고, 접근 제어까지 마친 뒤 스마트공장 인프라 시뮬레이션으로 방향을 바꿨습니다.

@@ -1,0 +1,149 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Cable from './Cable.astro';
+import { CATEGORIES } from '../config';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="featured">
+  {
+    projects.map((project) => {
+      const { title, summary, category, team, period, tools, metric, highlights } = project.data;
+      return (
+        <article class="item">
+          <div class="main">
+            <p class="kind">
+              <Cable category={category} />
+              {CATEGORIES[category]}, {team}
+            </p>
+            <h3>
+              <a href={`/projects/${project.id}/`}>{title}</a>
+            </h3>
+            <p class="summary">{summary}</p>
+            <p class="meta">
+              <span>{period}</span>
+              <span>{tools.join(', ')}</span>
+            </p>
+            <a class="more" href={`/projects/${project.id}/`}>
+              자세히 보기
+            </a>
+          </div>
+          <div class="side">
+            {metric && (
+              <div class="metric">
+                <span class="value">{metric.value}</span>
+                <span class="label">{metric.label}</span>
+              </div>
+            )}
+            {highlights.length > 0 && (
+              <ul>
+                {highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </article>
+      );
+    })
+  }
+</div>
+
+<style>
+  .featured {
+    border-top: 1px solid var(--ink);
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 32px;
+    padding: 32px 0 40px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .kind {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.32px;
+    color: var(--ink-muted);
+    margin: 0 0 12px;
+  }
+  h3 {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+  h3 a {
+    color: var(--ink);
+  }
+  h3 a:hover {
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .summary {
+    margin: 0 0 20px;
+    color: var(--ink-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 38rem;
+  }
+  .meta {
+    margin: 0 0 20px;
+    font-size: 12px;
+    letter-spacing: 0.32px;
+    color: var(--ink-muted);
+  }
+  .meta span {
+    display: block;
+  }
+  .more {
+    font-size: 14px;
+  }
+  .side {
+    background: var(--surface-1);
+    padding: 24px;
+    align-self: start;
+  }
+  .metric {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .value {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .label {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  li + li {
+    margin-top: 6px;
+  }
+  @media (max-width: 52rem) {
+    .item {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    h3 {
+      font-size: 26px;
+    }
+  }
+</style>
