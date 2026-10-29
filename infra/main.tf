@@ -5,11 +5,10 @@
 # Custom Domain은 DNS 레코드와 인증서를 Cloudflare가 함께 만들어 줘서,
 # 손으로 만든 레코드와 섞여 꼬이는 일이 없습니다.
 resource "cloudflare_workers_custom_domain" "site" {
-  account_id  = var.account_id
-  zone_id     = var.zone_id
-  hostname    = var.hostname
-  service     = var.worker_name
-  environment = "production"
+  account_id = var.account_id
+  zone_id    = var.zone_id
+  hostname   = var.hostname
+  service    = var.worker_name
 }
 
 resource "cloudflare_zone_setting" "always_use_https" {
