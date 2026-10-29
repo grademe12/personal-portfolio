@@ -4,7 +4,7 @@ summary: 워드프레스 블로그를 설정 실수로 잃은 뒤, 글과 설정
 category: auto
 team: 개인 프로젝트
 period: '2026.10'
-tools: [Astro, Cloudflare Workers, GitHub Actions]
+tools: [Astro, Cloudflare Workers, Terraform, GitHub Actions]
 repo: https://github.com/grademe12/personal-portfolio
 size: wide
 order: 9
@@ -19,3 +19,4 @@ short: 이 사이트
 
 - 글과 설정을 DB가 아니라 Git 저장소의 마크다운 파일로 관리합니다. 변경 이력이 남고 어떤 상태로든 되돌릴 수 있습니다.
 - 서버를 직접 운영하지 않습니다. push하면 Cloudflare가 빌드해서 정적 자산으로 배포하고, `woosupar.dev` 도메인으로 서비스합니다.
+- 도메인 연결(Custom domain)과 HTTPS 강제, 최소 TLS 1.2 같은 존 설정은 Terraform으로 관리합니다. 대시보드에서 만들어 둔 설정을 `terraform import`로 가져왔고, 그 과정에서 HTTPS 강제가 꺼져 있던 것을 찾아 켰습니다. GitHub Actions가 `infra/` 변경마다 `terraform validate`를 돌립니다.

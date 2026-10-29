@@ -65,3 +65,18 @@ Worker           실제로 HTML을 돌려준다
 ```
 
 막혔던 문제마다 어느 층의 일인지 따져 보니 훨씬 덜 헷갈렸다.
+
+## 그 뒤: 도메인 연결을 코드로 옮겼다
+
+이번 일이 꼬였던 건 결국 대시보드에서 손으로 만든 설정이 어디에도 기록되지 않았기 때문이었다. 집 IP를 가리키던 A 레코드도 언제 만들었는지 기억나지 않았다.
+
+그래서 지금은 `woosupar.dev`를 Worker에 붙이는 Custom domain과 존 설정을 Terraform으로 관리한다([`infra/`](https://github.com/grademe12/personal-portfolio/tree/main/infra)). 이미 대시보드에서 만든 것들이라 새로 만들지 않고 `terraform import`로 상태에 가져왔다.
+
+가져온 뒤 처음 돌린 `plan`에서 두 가지를 새로 알게 됐다.
+
+| 설정 | 그때까지 | 지금 |
+|---|---|---|
+| HTTPS 강제 (`always_use_https`) | off. `http://`로도 열렸다 | on |
+| 최소 TLS 버전 (`min_tls_version`) | 1.0 | 1.2 |
+
+둘 다 기본값 그대로였고, 대시보드만 봤다면 계속 몰랐을 것이다. 설정을 코드로 옮기는 작업은 그 자체로 지금 상태를 점검하는 일이기도 했다.
