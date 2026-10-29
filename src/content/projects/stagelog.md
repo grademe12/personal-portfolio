@@ -21,17 +21,18 @@ roles:
       - API Gateway를 VPC Link로 internal ALB에 연결하고 Lambda authorizer 연동
       - .env 파일 배포 대신 서비스별 SSM Parameter Store로 전환
       - auth Lambda CI/CD와 ECR 푸시용 IAM 역할
-      - 배포와 삭제를 한 번에 하는 스크립트(Makefile, Discord 알림)를 만들어 개발 서버를 업무 시간에만 운영
+      - 배포와 삭제를 한 번에 하는 스크립트(Makefile, Discord 알림)를 만들어 개발 서버를 평일 업무 시간에만 운영
 short: Stagelog
 featured: true
 metric:
-  value: '69'
-  label: stagelog-infra 커밋, 팀 5명 중 가장 많음
+  value: '73%'
+  label: 개발 서버 가동 시간 감소, 평일 업무 시간에만 운영
 highlights:
   - 모놀리식 Django를 4개 서비스와 워커로 분리하고 Outbox 패턴으로 정합성 확보
   - auth를 Lambda로 떼어 내 API Gateway Authorizer에서 JWT 검증
   - 수명주기별 Terraform 스택에서 EKS IRSA, STS VPC Endpoint, API Gateway VPC Link 구성
   - .env 배포를 서비스별 SSM Parameter Store로 전환
+  - 배포, 삭제 자동화로 개발 서버를 평일 09:00~18:00에만 운영 (stagelog-infra 커밋 팀 내 1위)
 ---
 
 구름 클라우드 네이티브 엔지니어링 과정의 마지막 팀 프로젝트(2026.02.27 – 2026.03.30)입니다. 같은 서비스를 1차(AWS 배포), 2차(보안 취약점 진단과 대응), 3차(MSA와 EKS)로 이어서 발전시켰고, 이 페이지는 3차를 중심으로 정리했습니다.
@@ -46,7 +47,7 @@ highlights:
 
 `stagelog-infra`는 Terraform 스택을 얼마나 오래 사는지에 따라 나눴습니다. EKS를 내렸다 다시 올려도 DNS, 인증서, 데이터 저장소 같은 기반은 그대로 남습니다.
 
-이 구조 덕분에 개발 서버를 **업무 시간(09:00~18:00)에만** 운영할 수 있었습니다. 아침에 `deploy_all.sh`로 재생성 계층을 올리고 저녁에 `destroy_all.sh`로 내리면, 시간당 과금되는 EKS, 노드, NAT 게이트웨이가 하루 9시간만 돌아갑니다. 상시 운영과 비교하면 가동 시간이 약 62% 줄어듭니다. 두 스크립트는 Makefile로 순서를 묶고, 끝나면 Discord로 알림이 오게 만들었습니다.
+이 구조 덕분에 개발 서버를 **평일 업무 시간(09:00~18:00)에만** 운영할 수 있었습니다. 아침에 `deploy_all.sh`로 재생성 계층을 올리고 저녁에 `destroy_all.sh`로 내리고, 주말에는 올리지 않았습니다. 시간당 과금되는 EKS, 노드, NAT 게이트웨이가 일주일 168시간 중 45시간만 돌아가서, 상시 운영과 비교하면 가동 시간이 약 73% 줄어듭니다. 두 스크립트는 Makefile로 순서를 묶고, 끝나면 Discord로 알림이 오게 만들었습니다.
 
 | 스택 | 담는 것 |
 |---|---|
