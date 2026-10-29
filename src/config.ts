@@ -66,6 +66,11 @@ export const LANGUAGES =
 
 export const PATH: { when: string; title: string; note: string }[] = [
   {
+    when: '2012.03 – 2019.08',
+    title: '경제학 학사',
+    note: '비용과 효율을 숫자로 따져 보는 습관이 여기서 생겼습니다.',
+  },
+  {
     when: '2023.10 – 2025.10',
     title: '42서울',
     note: 'VM에 리눅스 서버를 처음 직접 세워 보면서(Born2beroot) 서버와 네트워크에 관심이 생겼습니다. 이후 C로 셸과 레이 트레이서를 만들고(miniShell, miniRT), Docker Compose로 서비스 인프라를 구성했습니다(inception).',
@@ -82,5 +87,10 @@ export const PATH: { when: string; title: string; note: string }[] = [
   },
   { when: '2025.10', title: '첫 멀티 클라우드 프로젝트', note: '네이버 클라우드에 Terraform으로 NKS를 올렸습니다.' },
   { when: '2025.12', title: 'AWS Certified Solutions Architect – Associate', note: '취득' },
+  {
+    when: '2026.02',
+    title: '컴퓨터공학 학사 (학점은행제)',
+    note: '42서울과 병행하며 학점을 쌓아 취득했습니다.',
+  },
   { when: '2026.06 –', title: '모의 주식 거래소', note: '부하와 관측을 단계별로 붙여 가는 중입니다.' },
 ];
