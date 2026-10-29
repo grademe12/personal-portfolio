@@ -9,6 +9,12 @@ repo: https://github.com/grademe12/dm-roleplaying
 size: wide
 order: 5
 short: LLM 에이전트 제어 계층
+featured: true
+highlights:
+  - 코드는 AI 코딩 에이전트로 작성하고, 모듈 구조와 작업 난이도별 모델 배정은 직접 설계
+  - Meta Muse와 Grok Bot에서 지연, 품질, 비용을 비교하고 측정 결과에 따라 응답 경로의 모듈화를 되돌림
+  - 기억 정리는 응답 경로 밖에서 따로 돌려 답장 지연에 영향이 없게 분리
+  - 지금은 품질이 가장 좋은 Grok Bot의 토큰 비용 절감에 집중
 ---
 
 LLM에 DM 답장을 맡기는 것 자체는 쉽습니다. 어려운 건 그 뒤입니다.

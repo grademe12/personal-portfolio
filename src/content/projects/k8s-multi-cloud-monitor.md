@@ -8,7 +8,7 @@ tools: [NCP NKS, Terraform, NestJS, Next.js]
 repo: https://github.com/grademe12/k8s-multi-cloud-monitor
 order: 3
 short: 멀티 클러스터 모니터
-featured: true
+featured: false
 metric:
   value: '82'
   label: 커밋, 인프라부터 앱과 배포까지 혼자

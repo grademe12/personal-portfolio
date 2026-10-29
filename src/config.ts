@@ -4,8 +4,8 @@ export const SITE = {
   title: '박우성, 클라우드와 DevOps 엔지니어',
   role: '클라우드, DevOps 엔지니어',
   description:
-    '42서울에서 C로 셸을 만들다가 클라우드 인프라로 넘어온 박우성의 포트폴리오. Terraform, EKS, 홈랩 하이브리드 인프라.',
-  headline: '42서울에서 C로 셸을 만들던 사람이, 지금은 클라우드 인프라를 코드로 만듭니다.',
+    '인프라를 코드로 만들고 직접 운영하며 고치는 클라우드, DevOps 엔지니어 박우성의 포트폴리오. Terraform, EKS, 홈랩, LLM 에이전트 운영.',
+  headline: '인프라를 코드로 만들고, 직접 운영하며 재 보고 고칩니다.',
   intro:
     '집에서는 미니 PC와 라즈베리파이로 홈랩을 직접 운영하고, 팀에서는 Terraform으로 EKS 기반 MSA 인프라를 만들었습니다. 오른쪽은 지금 운영 중인 홈랩 구성입니다.',
   email: 'grademe12@gmail.com',
