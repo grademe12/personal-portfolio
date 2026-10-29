@@ -21,6 +21,7 @@ roles:
       - API Gateway를 VPC Link로 internal ALB에 연결하고 Lambda authorizer 연동
       - .env 파일 배포 대신 서비스별 SSM Parameter Store로 전환
       - auth Lambda CI/CD와 ECR 푸시용 IAM 역할
+      - 배포와 삭제를 한 번에 하는 스크립트(Makefile, Discord 알림)를 만들어 개발 서버를 업무 시간에만 운영
 short: Stagelog
 featured: true
 metric:
@@ -44,6 +45,8 @@ highlights:
 ## 인프라를 수명주기로 나누기
 
 `stagelog-infra`는 Terraform 스택을 얼마나 오래 사는지에 따라 나눴습니다. EKS를 내렸다 다시 올려도 DNS, 인증서, 데이터 저장소 같은 기반은 그대로 남습니다.
+
+이 구조 덕분에 개발 서버를 **업무 시간(09:00~18:00)에만** 운영할 수 있었습니다. 아침에 `deploy_all.sh`로 재생성 계층을 올리고 저녁에 `destroy_all.sh`로 내리면, 시간당 과금되는 EKS, 노드, NAT 게이트웨이가 하루 9시간만 돌아갑니다. 상시 운영과 비교하면 가동 시간이 약 62% 줄어듭니다. 두 스크립트는 Makefile로 순서를 묶고, 끝나면 Discord로 알림이 오게 만들었습니다.
 
 | 스택 | 담는 것 |
 |---|---|
