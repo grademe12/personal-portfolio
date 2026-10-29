@@ -1,0 +1,22 @@
+name: terraform
+
+on:
+  push:
+    branches: [main]
+    paths: ['infra/**', '.github/workflows/terraform.yml']
+  pull_request:
+    paths: ['infra/**', '.github/workflows/terraform.yml']
+
+# 인증 정보 없이 형식과 문법만 검사합니다. apply는 로컬에서 합니다.
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -diff
+      - run: terraform init -backend=false -input=false
+      - run: terraform validate
