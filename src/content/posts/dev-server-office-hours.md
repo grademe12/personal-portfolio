@@ -3,7 +3,7 @@ title: 개발 서버를 업무 시간에만 띄워 가동 시간을 73% 줄인 �
 description: Terraform 스택을 수명주기로 나눠서 EKS 개발 환경을 매일 올리고 내렸다. 얼마를 아꼈는지 추정하고, 청구서로 다시 확인했다.
 date: 2026-10-29
 tags: [Terraform, AWS, EKS, 비용]
-draft: true
+draft: false
 ---
 
 ## 문제

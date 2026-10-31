@@ -3,7 +3,7 @@ title: 코어가 4개인데 왜 하나만 쓸까
 description: 모의 주식 거래소를 GCE에 올리고 CPU 사용률을 끝까지 올려 보려다, Python GIL과 인메모리 호가창, 공유 코어 VM을 차례로 만난 기록.
 date: 2026-10-29
 tags: [운영체제, 성능, Python, GCP]
-draft: true
+draft: false
 ---
 
 ## 처음 질문
