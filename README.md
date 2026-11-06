@@ -1,78 +1,58 @@
-# 포트폴리오 사이트
+# personal-portfolio
 
-Astro로 만든 정적 포트폴리오입니다. 서버와 DB가 없고, 글과 설정은 모두 이 저장소의 파일입니다.
-**Git이 곧 백업**이라 사이트를 망가뜨려도 이전 커밋으로 되돌리면 됩니다.
+[woosupar.dev](https://woosupar.dev)의 소스입니다. Astro로 만든 정적 사이트라 서버와 DB가 없고, 프로젝트 소개와 블로그 글은 모두 이 저장소의 마크다운 파일입니다.
 
-## 로컬에서 보기
+## 구조
+
+```text
+마크다운 (src/content/) ─▶ Astro 빌드 ─▶ dist/ ─▶ Cloudflare Workers (정적 자산)
+                                                      ▲
+                                    woosupar.dev ─────┘  도메인 연결과 HTTPS 설정은 Terraform (infra/)
+```
+
+- `main`에 push하면 Cloudflare가 저장소를 받아 `npm run build`로 빌드하고 `dist/`를 올립니다. `wrangler.jsonc`가 그 설정입니다.
+- 도메인 연결(Workers Custom Domain)과 HTTPS 강제, 최소 TLS 1.2 설정은 `infra/`의 Terraform으로 관리합니다.
+- GitHub Actions는 push와 PR마다 사이트 빌드(`build.yml`)와 Terraform 형식 검사(`terraform.yml`)만 돌립니다. 배포는 하지 않습니다.
+
+| 경로 | 내용 |
+|---|---|
+| `src/config.ts` | 이름, 첫 화면 문구, 연락처, 다루는 도구, 걸어온 길, 블로그 표시 여부 |
+| `src/content/projects/` | 프로젝트 소개. 파일 이름이 주소가 됩니다 (`stock-market.md` → `/projects/stock-market/`) |
+| `src/content/posts/` | 블로그 글 |
+| `src/pages/`, `src/layouts/`, `src/components/` | 화면 구성 |
+| `src/styles/global.css` | 색(라이트, 다크)과 글꼴 |
+| `public/` | 이미지와 파비콘 |
+| `infra/` | Cloudflare 도메인 설정 Terraform |
+
+## 써 보려면
+
+Node 22가 필요합니다(`.nvmrc`).
 
 ```bash
 npm install
 npm run dev      # http://localhost:4321
+npm run build    # dist/ 에 정적 파일 생성
 ```
 
-## 내 정보로 바꾸기
+### 글 추가하기
 
-`src/config.ts` 한 파일에 이름, 첫 화면 문구, 이메일, GitHub, 다루는 도구 표, 걸어온 길이 모여 있습니다.
-
-## 프로젝트 추가
-
-`src/content/projects/` 에 마크다운 파일을 하나 만듭니다. 파일 이름이 주소가 됩니다. (`my-lab.md` → `/projects/my-lab/`)
+`src/content/projects/`나 `src/content/posts/`에 마크다운 파일을 하나 만들면 됩니다. 머리말(frontmatter)의 항목은 `src/content.config.ts`에 정의되어 있고, 빠지거나 형식이 틀리면 빌드가 실패합니다.
 
 ```markdown
 ---
 title: 프로젝트 이름
 summary: 두세 줄 요약 (홈 화면 타일에 표시)
-category: cloud          # net, cloud, auto, obs 중 하나 (랜선 색)
-team: 개인 프로젝트       # 또는 '팀 프로젝트 5인'
-period: '2026.01 – 2026.03'   # 따옴표 필수 (없으면 숫자로 읽힘)
+category: cloud          # net, cloud, auto, obs, dev 중 하나
+period: '2026.01 – 2026.03'
 tools: [Terraform, EKS]
-repo: https://github.com/...  # 선택
-size: normal             # lead(왼쪽 큰 칸), wide(한 줄 전체), normal
-order: 1                 # 작을수록 앞에
-roles:                   # 팀 프로젝트에서 내가 한 일 (선택)
-  - title: '인프라'
-    items: [EKS IRSA 구성]
-draft: false             # true면 숨김
+draft: false             # true면 사이트에 나오지 않음
 ---
 
-본문은 상세 페이지의 "자세히" 영역에 들어갑니다.
+본문
 ```
 
-첫 화면 구성도는 `src/components/PearlDiagram.astro` 의 SVG입니다.
+### 알아 둘 것
 
-## 블로그 켜기
-
-1. `src/config.ts` 에서 `showBlog: true`
-2. `src/content/posts/` 에 글을 씁니다. `draft: true` 인 글은 공개되지 않습니다.
-
-블로그가 꺼져 있으면 메뉴에서 사라지고, `/blog/` 는 홈으로 이동합니다.
-
-## 배포 (Cloudflare)
-
-Cloudflare 대시보드 → Workers & Pages → Create → Git 저장소 연결.
-
-**Workers로 만든 경우 (프레임워크 선택 칸이 없는 화면)**
-- Build command: `npm run build`
-- Deploy command: `npx wrangler deploy` (기본값 그대로)
-- 저장소의 `wrangler.jsonc` 가 `dist/` 를 정적 자산으로 올립니다.
-
-**Pages로 만든 경우**
-- Framework preset: Astro, Build command: `npm run build`, Output directory: `dist`
-
-Node 버전은 `.node-version` / `.nvmrc` (22)로 지정되어 있습니다.
-배포 후 도메인을 연결하면 `astro.config.mjs` 의 `site` 를 실제 주소로 바꾸세요.
-이후로는 `main` 에 push할 때마다 자동 배포됩니다.
-`.github/workflows/build.yml` 은 push/PR마다 빌드가 깨지지 않았는지 확인합니다.
-
-## 구조
-
-```
-src/
-  config.ts              # 개인 정보, 스택, 블로그 on/off
-  content/projects/      # 프로젝트 글 (마크다운)
-  content/posts/         # 블로그 글 (마크다운)
-  pages/                 # 라우트
-  layouts/Base.astro     # 헤더, 푸터, 공통 레이아웃
-  styles/global.css      # 색상(라이트/다크), 타이포그래피
-public/                  # favicon, 이미지
-```
+- **`period`는 따옴표로 감쌉니다.** `2026.01`처럼 날짜 하나만 쓰면 따옴표가 없을 때 숫자로 읽혀 빌드가 깨집니다.
+- **표의 첫 열은 줄바꿈되지 않습니다.** 본문 표의 첫 칸은 한 줄로 고정되는 스타일이라, 첫 칸에 긴 문장을 넣으면 휴대폰에서 표가 화면 밖으로 밀립니다.
+- **`draft: true`인 글은 주소로도 열리지 않습니다.** 빌드 결과에서 아예 빠집니다.
