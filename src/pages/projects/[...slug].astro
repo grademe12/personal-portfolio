@@ -4,6 +4,11 @@ import Base from '../../layouts/Base.astro';
 import Cable from '../../components/Cable.astro';
 import HomelabDiagram from '../../components/HomelabDiagram.astro';
 import PearlDiagram from '../../components/PearlDiagram.astro';
+import StockMarketDiagram from '../../components/StockMarketDiagram.astro';
+import K8sMonitorDiagram from '../../components/K8sMonitorDiagram.astro';
+import DmRoleplayingDiagram from '../../components/DmRoleplayingDiagram.astro';
+import StagelogDiagram from '../../components/StagelogDiagram.astro';
+import SiteDiagram from '../../components/SiteDiagram.astro';
 import { CATEGORIES } from '../../config';
 import { getProjects } from '../../lib/content';
 
@@ -14,7 +19,15 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { title, summary, category, team, period, tools, repo, roles, diagram } = project.data;
-const Diagram = { homelab: HomelabDiagram, pearl: PearlDiagram }[diagram ?? ''];
+const Diagram = {
+  homelab: HomelabDiagram,
+  pearl: PearlDiagram,
+  stock: StockMarketDiagram,
+  k8smon: K8sMonitorDiagram,
+  dm: DmRoleplayingDiagram,
+  stagelog: StagelogDiagram,
+  site: SiteDiagram,
+}[diagram ?? ''];
 const { Content } = await render(project);
 ---
 

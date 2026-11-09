@@ -5,6 +5,7 @@ category: auto
 team: 개인 프로젝트
 period: '2026.10'
 tools: [Astro, Cloudflare Workers, Terraform, GitHub Actions]
+diagram: site
 repo: https://github.com/grademe12/personal-portfolio
 size: wide
 order: 9

@@ -5,6 +5,7 @@ category: auto
 team: 팀 프로젝트 5인
 period: '2026.01 – 2026.03'
 tools: [Terraform, EKS, ArgoCD, Karpenter, API Gateway, Django]
+diagram: stagelog
 repo: https://github.com/Goorm-Team-Project/stagelog-infra
 size: lead
 order: 1

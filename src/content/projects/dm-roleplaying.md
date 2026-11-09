@@ -5,6 +5,7 @@ category: dev
 team: 개인 프로젝트
 period: '2026.10 – 진행 중'
 tools: [AI 코딩 에이전트, Python, SQLite, Meta Muse, Grok Bot, Claude Opus 5.5, OpenAI, Venice API, OpenCode]
+diagram: dm
 repo: https://github.com/grademe12/dm-roleplaying
 size: wide
 order: 5
@@ -48,17 +49,7 @@ LLM에 DM 답장을 맡기는 것 자체는 쉽습니다. 어려운 건 그 뒤�
 
 ## 구조
 
-```
-메신저 수신 → ingest → SQLite 원장 ← apply (결정 검증, 원자적 반영)
-                          │                     ▲
-                          ▼                     │
-                     gate (깨울지 판단)     decision_session
-                          │              (입력 준비 → 판단 → 검증 → 커밋)
-                          ▼                     │
-                     모델 워커 (외부 LLM) ──────┘
-                          │
-                     dispatch (발송 lease, 순서, 재시도) → 메신저 전송
-```
+위 구성도처럼 메시지 수신부터 발송까지 한 흐름이고, 모델은 상태를 받아 결정 JSON을 돌려주는 자리에만 있습니다. 반영과 발송은 모두 코드가 합니다.
 
 ## 설계 원칙
 

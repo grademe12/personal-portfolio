@@ -5,6 +5,7 @@ category: obs
 team: 개인 프로젝트
 period: '2026.06 – 진행 중'
 tools: [Django, GCE, Terraform, Tailscale, Prometheus, Grafana, k6]
+diagram: stock
 repo: https://github.com/grademe12/stock-market
 order: 4
 short: 모의 주식 거래소
@@ -56,18 +57,7 @@ highlights:
 
 ## 구성
 
-```
-mini PC (home)                          GCE e2-standard-4
-  participant-runner ---Tailscale--->  :8000  symbol router
-                                          +--> 127.0.0.1:8001  shard 0
-                                          +--> 127.0.0.1:8002  shard 1
-                                          +--> 127.0.0.1:8003  shard 2
-                                          +--> 127.0.0.1:8004  shard 3
-  Prometheus, Grafana <---scrape-----  :8000/metrics/{shard}
-  PostgreSQL 17 <------Tailscale-----  shards
-```
-
-집의 미니 PC에서 트레이더(runner)가 Tailscale로 GCE의 종목 라우터 하나에만 주문을 보냅니다. 라우터는 종목을 보고 VM 안에서만 열린 매처 샤드 4개 중 하나로 넘깁니다. 관측과 DB는 집에 있습니다.
+위 구성도처럼 집의 미니 PC에서 트레이더(runner)가 Tailscale로 클라우드 VM의 종목 라우터 하나에만 주문을 보냅니다. VM은 Day 5까지 GCE, Day 6부터 Azure입니다. 라우터는 종목을 보고 VM 안에서만 열린 매처 샤드 4개 중 하나로 넘깁니다. 관측과 DB는 집에 있습니다.
 
 - **매칭 엔진:** Django/DRF. 종목별 인메모리 호가창, 가격·시간 우선, 부분 체결. 같은 종목은 프로세스 하나만 처리합니다.
 - **시장참여자:** 백엔드와 분리된 runner가 HTTP로 주문합니다. Noise, Momentum, Mean Reversion, Liquidity Provider 전략, 거래대금 상위 10종목.

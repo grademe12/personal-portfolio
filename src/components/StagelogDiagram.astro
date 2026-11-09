@@ -1,0 +1,50 @@
+---
+// Stagelog 3차 구성. 위는 항상 유지하는 스택, 아래는 평일 업무 시간에만 올리는 스택입니다.
+import Drawing from './Drawing.astro';
+---
+
+<Drawing title="Stagelog 구성도" kind="팀 프로젝트" date="2026-03">
+  <svg
+    viewBox="0 0 640 380"
+    role="img"
+    aria-label="Stagelog 구성도: 사용자 요청은 CloudFront로 들어와 프론트엔드는 S3에서, /api 경로는 API Gateway로 갑니다. API Gateway는 Lambda authorizer로 JWT를 검증하고 VPC Link와 internal ALB를 거쳐 EKS의 서비스로 넘깁니다. 데이터 저장소와 비동기 알림 파이프라인은 항상 유지되는 permanent 스택에 있고, EKS와 API Gateway는 평일 업무 시간에만 올리는 스택에 있습니다."
+  >
+    <defs><pattern id="stagelog-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#f0f0f0" stroke-width="1"></path></pattern></defs>
+    <rect width="640" height="380" fill="url(#stagelog-grid)"></rect>
+    <rect x="110" y="20" width="510" height="120" fill="none" stroke="#8d8d8d" stroke-width="1"></rect>
+    <rect x="110" y="150" width="510" height="180" fill="none" stroke="#8d8d8d" stroke-width="1"></rect>
+    <path d="M90 77 H130" fill="none" stroke="#d1621f" stroke-width="4"></path>
+    <path d="M180 104 V170" fill="none" stroke="#d1621f" stroke-width="4"></path>
+    <path d="M300 194 H320" fill="none" stroke="#161616" stroke-width="1.5"></path>
+    <path d="M370 218 V226" fill="none" stroke="#161616" stroke-width="1.5"></path>
+    <path d="M450 226 V110 M550 226 V110" fill="none" stroke="#0f62fe" stroke-width="3" stroke-dasharray="8 5"></path>
+    <g font-family="-apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, Pretendard Variable, Pretendard, sans-serif" font-size="13" fill="#161616">
+    <text x="122" y="128" text-anchor="start" font-size="12" fill="#8d8d8d"></text>
+    <text x="200" y="128" text-anchor="start" font-size="12" fill="#8d8d8d">1-permanent · 항상 유지</text>
+    <text x="608" y="318" text-anchor="end" font-size="12" fill="#8d8d8d">2-eks · 3-ephemeral · 평일 09–18시만</text>
+    <rect x="20" y="53" width="70" height="48" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+    <text x="55" y="82" text-anchor="middle" font-weight="600" font-size="13">사용자</text>
+    <rect x="130" y="50" width="200" height="54" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+    <text x="230" y="72.5" text-anchor="middle" font-weight="600" font-size="13">CloudFront</text>
+    <text x="230" y="91.5" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">S3 프론트 · /api/*</text>
+    <rect x="360" y="44" width="120" height="66" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+    <text x="420" y="63" text-anchor="middle" font-weight="600" font-size="13">데이터</text>
+    <text x="420" y="82" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">RDS 스키마 3</text>
+    <text x="420" y="101" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">Redis</text>
+    <rect x="490" y="44" width="120" height="66" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+    <text x="550" y="63" text-anchor="middle" font-weight="600" font-size="13">비동기 알림</text>
+    <text x="550" y="82" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">EventBridge</text>
+    <text x="550" y="101" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">SQS · DynamoDB</text>
+    <rect x="130" y="170" width="170" height="48" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+    <text x="215" y="189.5" text-anchor="middle" font-weight="600" font-size="13">API Gateway</text>
+    <text x="215" y="208.5" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">Lambda authorizer</text>
+    <rect x="320" y="170" width="100" height="48" fill="#fff" stroke="#161616" stroke-width="1.5"></rect>
+    <text x="370" y="189.5" text-anchor="middle" font-weight="600" font-size="13">VPC Link</text>
+    <text x="370" y="208.5" text-anchor="middle" font-size="11" fill="#525252" font-family="IBM Plex Mono, monospace">internal ALB</text>
+    <rect x="300" y="226" width="310" height="74" fill="#161616"></rect>
+    <text x="455" y="249" text-anchor="middle" font-weight="600" font-size="13" fill="#fff">EKS</text>
+    <text x="455" y="268" text-anchor="middle" font-size="11" fill="#c6c6c6" font-family="IBM Plex Mono, monospace">auth-user · posts · events · notifications</text>
+    <text x="455" y="287" text-anchor="middle" font-size="11" fill="#c6c6c6" font-family="IBM Plex Mono, monospace">outbox-worker · Karpenter · ArgoCD</text>
+    </g>
+  </svg>
+</Drawing>

@@ -5,6 +5,7 @@ category: cloud
 team: 개인 프로젝트
 period: '2025.10'
 tools: [NCP NKS, Terraform, NestJS, Next.js]
+diagram: k8smon
 repo: https://github.com/grademe12/k8s-multi-cloud-monitor
 order: 3
 short: 멀티 클러스터 모니터
