@@ -4,11 +4,7 @@
 
 ## 구조
 
-```text
-마크다운 (src/content/) ─▶ Astro 빌드 ─▶ dist/ ─▶ Cloudflare Workers (정적 자산)
-                                                      ▲
-                                    woosupar.dev ─────┘  도메인 연결과 HTTPS 설정은 Terraform (infra/)
-```
+![포트폴리오 사이트 구성도](docs/architecture.svg)
 
 - `main`에 push하면 Cloudflare가 저장소를 받아 `npm run build`로 빌드하고 `dist/`를 올립니다. `wrangler.jsonc`가 그 설정입니다.
 - 도메인 연결(Workers Custom Domain)과 HTTPS 강제, 최소 TLS 1.2 설정은 `infra/`의 Terraform으로 관리합니다.
