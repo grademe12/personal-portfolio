@@ -8,6 +8,7 @@ woosupar.dev 도메인을 Worker에 붙이는 설정과 존 설정을 Terraform�
 |---|---|
 | Worker 코드와 정적 파일 배포 | Cloudflare Git 연동 (`main` push, `wrangler.jsonc`) |
 | Worker에 woosupar.dev 연결 (Custom Domain) | `main.tf` |
+| 이력서 Worker에 resume.woosupar.dev 연결 | `main.tf` (`cloudflare_workers_custom_domain.resume`) |
 | HTTPS 강제, 최소 TLS 1.2 | `main.tf` |
 | 형식과 문법 검사 | GitHub Actions (`.github/workflows/terraform.yml`) |
 
@@ -42,6 +43,16 @@ woosupar.dev 도메인을 Worker에 붙이는 설정과 존 설정을 Terraform�
    ```
 
 4. `terraform plan`을 돌려 바뀌는 게 없는지 확인합니다. 존 설정이 지금 값과 다르면 그 두 줄만 변경으로 나옵니다.
+
+## 서브도메인 추가: resume.woosupar.dev
+
+이력서 사이트([grademe12/resume](https://github.com/grademe12/resume))는 별도 Worker `resume`입니다. 이 리소스는 import 없이 새로 만듭니다.
+
+1. Cloudflare 대시보드에서 resume 레포를 Workers에 연결해 Worker `resume`이 먼저 배포되게 합니다.
+2. 그다음 `terraform plan`을 돌리면 `cloudflare_workers_custom_domain.resume` 하나만 추가로 나와야 합니다.
+3. `terraform apply`. DNS 레코드와 인증서는 Cloudflare가 함께 만듭니다. HTTPS 강제와 최소 TLS 1.2는 존 설정이라 서브도메인에도 그대로 적용됩니다.
+
+Worker가 없는 상태에서 apply하면 서비스를 찾지 못해 실패합니다.
 
 ## 상태 파일
 

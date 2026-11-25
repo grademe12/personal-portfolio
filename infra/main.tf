@@ -22,3 +22,11 @@ resource "cloudflare_zone_setting" "min_tls_version" {
   setting_id = "min_tls_version"
   value      = "1.2"
 }
+
+# 이력서 사이트(grademe12/resume)는 별도 Worker입니다. 같은 방식으로 서브도메인을 붙입니다.
+resource "cloudflare_workers_custom_domain" "resume" {
+  account_id = var.account_id
+  zone_id    = var.zone_id
+  hostname   = var.resume_hostname
+  service    = var.resume_worker_name
+}
